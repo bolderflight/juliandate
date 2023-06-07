@@ -6,5 +6,25 @@ Lint:
   tags:
     - bfs
   script: 
-    - cpplint --verbose=0 src/decyear.cpp
-    - cpplint --verbose=0 src/decyear.h
+    - cpplint --verbose=0 src/juliandate.cpp
+    - cpplint --verbose=0 src/juliandate.h
+
+Compile:
+  stage: build
+  tags:
+    - bfs
+  script:
+    - mkdir build
+    - cd build
+    - cmake ..
+    - make
+  artifacts:
+    paths:
+      - build/juliandate_test
+  
+Test Polytools:
+  stage: test
+  tags:
+    - bfs
+  script:
+    - ./build/juliandate_test
